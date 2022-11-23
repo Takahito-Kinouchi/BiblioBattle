@@ -24,6 +24,6 @@
 
     <p>
         アカウントがありませんか？
-        <a href="/register">ユーザー登録</a>
+        <a href="/users/register">ユーザー登録</a>
     </p>
 </form>
