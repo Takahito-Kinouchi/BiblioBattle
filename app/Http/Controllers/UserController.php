@@ -10,7 +10,7 @@ use App\Http\Requests\UserStoreRequest;
 class UserController extends Controller
 {
     public function register(){
-        return view('user.register');
+        return view('users.register');
     }
 
     public function store(UserStoreRequest $request){
@@ -27,7 +27,7 @@ class UserController extends Controller
     }
 
     public function login(){
-        return view('user.login');
+        return view('users.login');
     }
 
     public function authenticate(UserAuthRequest $request){ {
