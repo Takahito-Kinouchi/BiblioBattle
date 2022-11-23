@@ -18,16 +18,42 @@ use App\Http\Controllers\UserController;
 
 
 //show register
-Route::get('/user/register', [UserCOntroller::class, 'register']);
+Route::get('/users/register', [UserCOntroller::class, 'register'])->middleware('guest');
+
 //store register data and log in
 Route::post('/users', [UserController::class, 'store']);
+
 //show login
-Route::get('/user/login', [UserController::class, 'login']);
+Route::get('/users/login', [UserController::class, 'login'])->middleware('guest');
+
 //validate login data and login
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
+//logout
+Route::post('/users/logout', [UserController::class, 'logout']);
+
 //show all reviews
 Route::get('/', [ReviewController::class, 'index']);
+
+//show review entry form
+Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('auth');
+
+//store review entry
+Route::post('/reviews', [ReviewController::class, 'store']);
+
+//show review manage form
+Route::get('/reviews/manage', [ReviewController::class, 'manage'])->middleware('auth');
+
+//show edit form
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('auth');
+
+//update review
+Route::put('/reviews/{id}', [ReviewController::class, 'update']);
+
+
+
+//show single review
+Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
 
 
