@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->string('review_title');
             $table->longText('content');
-            $table->integer('vote');
+            $table->integer('vote')->default(0);
             $table->timestamps();
         });
     }
