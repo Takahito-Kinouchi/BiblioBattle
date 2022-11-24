@@ -10,6 +10,12 @@ class Vote extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'review_title',
+        'user_id',
+        'vote',
+    ];
+
     public function book_review(){
         return $this->belongsTo(Review::class);
     }

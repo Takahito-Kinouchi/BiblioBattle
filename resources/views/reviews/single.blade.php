@@ -7,4 +7,12 @@
     <p>content: {{ $review->content }}</p>
     <p>date: {{ $review->created_at->format('Y-m-d') }}</p>
     <p>current vote: {{ $review->votes->count() }}</p>
+    <p>
+        <form action="/votes" method="POST" >
+            @csrf
+            <button type="submit">
+                upvote
+            </button>
+        </form>
+    </p>
 </li>

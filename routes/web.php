@@ -3,6 +3,7 @@
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware
 //show single review
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
+Route::post('/votes', [VoteController::class, 'upvote']);
 
 
 
