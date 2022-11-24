@@ -1,5 +1,6 @@
-<form action="/reviews" method="POST">
+<form action="/reviews/{{ $review->id }}" method="POST">
     @csrf
+    @method('PUT')
     <div>
         <label>review title: </label>
         <input type="text" name="review_title" value="{{ $review->review_title }}" />
