@@ -13,11 +13,12 @@ class ReviewStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'reviews') {
-            return true;
-        } else {
-            return false;
-        }
+        // if ($this->path() == 'reviews') {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return true;
     }
 
     /**
