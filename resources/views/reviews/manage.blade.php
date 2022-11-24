@@ -4,6 +4,17 @@
         <tr class="border-gray-300">
             <td class="px-4 py-8 border t border-b border-gray-300 text-lg">
                 <p class="text-center">No reviews Found</p>
+
+            </td>
+            <td
+                class="px-4 py-8 border-t border-b border-gray-300 text-lg"
+            >
+                <a
+                    href="/reviews/entry"
+                    class="text-blue-400 px-6 py-2 rounded-xl"
+                >
+                Entry Your Review
+            </a>
             </td>
         </tr>
         @else
@@ -15,6 +26,11 @@
                     <a href="/reviews/{{ $review->id }}">
                         {{ $review->review_title }}
                     </a>
+                </td>
+                <td
+                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
+                >
+                        {{ $review->votes->count() }}
                 </td>
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
