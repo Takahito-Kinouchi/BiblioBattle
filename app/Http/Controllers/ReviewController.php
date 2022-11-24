@@ -53,26 +53,36 @@ class ReviewController extends Controller
         ]);
     }
 
-    public function update(ReviewStoreRequest $request, BookReview $bookReview){
+    public function update(ReviewStoreRequest $request, $id){
+        $review = BookReview::where('id', $id)->first();
+
         //make sure logged in user is owner
-        dd($bookReview);
-        if ($bookReview->user_id != auth()->id()) {
+        if ($review->user_id != auth()->id()) {
             abort(403, 'Unauthorized action');
         }
 
         $entry = $request->validated();
 
-        $bookReview->update($entry);
+        $review->update($entry);
 
-        return back()->with('message', 'review updated successfully!');
-
-
-
+        return redirect('/')->with('message', 'review updated successfully!');
     }
 
     public function edit($id){
         $review = BookReview::where('id', $id)->first();
-        return view('reviews.edit', ['review' => $review]);
 
+        return view('reviews.edit', ['review' => $review]);
+    }
+
+    public function destroy($id){
+        $review = BookReview::where('id', $id)->first();
+
+        //make sure logged in user is owner
+        if ($review->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action');
+        }
+        $review->delete();
+
+        return redirect('/')->with('message', 'review deleted successfully!');
     }
 }
