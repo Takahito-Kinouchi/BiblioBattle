@@ -11,7 +11,7 @@ class Vote extends Model
     use HasFactory;
 
     protected $fillable = [
-        'review_title',
+        'review_id',
         'user_id',
         'vote',
     ];
