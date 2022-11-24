@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\BookReview;
 use App\Models\User;
+use App\Models\Vote;
+use App\Models\BookReview;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         BookReview::factory(30)->create();
-
+        Vote::factory(100)->create();
     }
 }
