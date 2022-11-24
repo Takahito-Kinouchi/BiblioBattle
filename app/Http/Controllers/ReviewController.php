@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Review;
 use App\Http\Requests\ReviewStoreRequest;
 
 class ReviewController extends Controller
 {
     public function index(){
-        $reviews = Review::find(1);
-        dd($reviews);
-        //$reviews = BookReview::orderby('vote', 'desc')->take(6)->get();
-        $users = $reviews->user;
-        dd($users);
+        $reviews = Review::get()->sortByDesc(function($query){
+            return $query->votes->count();
+        })->take(6);
 
         return view('reviews.index', [
             'reviews' => $reviews,
-            'users' => $users,
         ]);
     }
 
     public function show($id){
         $review = Review::where('id', '=', $id)->first();
-        $user_id = $review->user_id;
-        $user = User::where('id', '=', $user_id)->first()->only(['id', 'name']);
 
         return view('reviews.single', [
             'review' => $review,
-            'user' => $user,
         ]);
     }
 
