@@ -21,10 +21,10 @@ class Review extends Model
     ];
 
 public function user(){
-    return $this->belongsTo(User::class, 'id', 'user_id');
+    return $this->belongsTo(User::class);
 }
 
     public function votes(){
-        return $this->hasMany(Vote::class, 'review_id');
+        return $this->hasMany(Vote::class);
     }
 }
