@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\BookReview;
+use App\Models\Review;
 use App\Http\Requests\ReviewStoreRequest;
 
 class ReviewController extends Controller
 {
     public function index(){
-        $reviews = BookReview::orderby('vote', 'desc')->take(6)->get();
-        $user_ids = array_column($reviews->toArray(), 'user_id');
-        $users = User::whereIn('id', $user_ids)->get(['id', 'name']);
+        $reviews = Review::find(1);
+        dd($reviews);
+        //$reviews = BookReview::orderby('vote', 'desc')->take(6)->get();
+        $users = $reviews->user;
+        dd($users);
+
         return view('reviews.index', [
             'reviews' => $reviews,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
     public function show($id){
-        $review = BookReview::where('id', '=', $id)->first();
+        $review = Review::where('id', '=', $id)->first();
         $user_id = $review->user_id;
         $user = User::where('id', '=', $user_id)->first()->only(['id', 'name']);
 
@@ -40,13 +43,13 @@ class ReviewController extends Controller
         $entry['user_id'] = auth()->id();
 
         //新規エントリー作成
-        BookReview::create($entry);
+        Review::create($entry);
 
         return redirect('/')->with('message', '書評を投稿しました！');
     }
 
     public function manage(){
-        $reviews = BookReview::where('user_id', auth()->id())->get();
+        $reviews = Review::where('user_id', auth()->id())->get();
 
         return view('reviews.manage', [
             'reviews' => $reviews,
@@ -54,7 +57,7 @@ class ReviewController extends Controller
     }
 
     public function update(ReviewStoreRequest $request, $id){
-        $review = BookReview::where('id', $id)->first();
+        $review = Review::where('id', $id)->first();
 
         //make sure logged in user is owner
         if ($review->user_id != auth()->id()) {
@@ -69,13 +72,13 @@ class ReviewController extends Controller
     }
 
     public function edit($id){
-        $review = BookReview::where('id', $id)->first();
+        $review = Review::where('id', $id)->first();
 
         return view('reviews.edit', ['review' => $review]);
     }
 
     public function destroy($id){
-        $review = BookReview::where('id', $id)->first();
+        $review = Review::where('id', $id)->first();
 
         //make sure logged in user is owner
         if ($review->user_id != auth()->id()) {
