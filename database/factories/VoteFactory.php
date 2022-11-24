@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use App\Models\BookReview;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +19,7 @@ class VoteFactory extends Factory
     public function definition()
     {
         $user = User::all();
-        $review = BookReview::all();
+        $review = Review::all();
         return [
             'review_id' => $review->random()->id,
             'user_id' => $user->random()->id,
