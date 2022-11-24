@@ -9,7 +9,7 @@
     @endif
     @foreach($reviews as $review)
         <li>
-            review title: {{ $review->review_title }}
+            review title: <a href="/reviews/{{ $review->id }}">{{ $review->review_title }}</a>
             <p>user name: {{ $review->user->name}}</p>
             <p>book title: {{ $review->book_title }}</p>
             <p>author: {{ $review->author }}</p>
