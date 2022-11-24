@@ -16,7 +16,7 @@
             <p>publisher: {{ $review->publisher }}</p>
             <p>content: {{ $review->content }}</p>
             <p>date: {{ $review->created_at->format('Y-m-d') }}</p>
-            <p>current vote: {{ $review->votes->count() }}</p>
+            <p>current vote: {{ $review->votes->sum('vote') }}</p>
         </li>
     @endforeach
     </ul>

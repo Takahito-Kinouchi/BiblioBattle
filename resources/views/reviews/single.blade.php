@@ -6,11 +6,11 @@
     <p>publisher: {{ $review->publisher }}</p>
     <p>content: {{ $review->content }}</p>
     <p>date: {{ $review->created_at->format('Y-m-d') }}</p>
-    <p>current vote: {{ $review->votes->count() }}</p>
+    <p>current vote: {{ $review->votes->sum('vote') }}</p>
     <p>
-        <form action="/votes" method="POST" >
+        <form action="/votes" method="POST" name="vote_type", value="upvote">
             @csrf
-            <button type="submit">
+            <button type="submit" name="review_id" value="{{ $review->id }}">
                 upvote
             </button>
         </form>
