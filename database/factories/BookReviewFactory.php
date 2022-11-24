@@ -25,7 +25,6 @@ class BookReviewFactory extends Factory
             'publisher' => $this->faker->company(),
             'review_title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(5),
-            'vote' => $this->faker->randomNumber(),
         ];
     }
 }
