@@ -39,7 +39,7 @@ Route::get('/', [ReviewController::class, 'index']);
 Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('auth');
 
 //store review entry
-Route::post('/reviews', [ReviewController::class, 'store']);
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth');
 
 //show review manage form
 Route::get('/reviews/manage', [ReviewController::class, 'manage'])->middleware('auth');
@@ -48,9 +48,10 @@ Route::get('/reviews/manage', [ReviewController::class, 'manage'])->middleware('
 Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('auth');
 
 //update review
-Route::put('/reviews/{id}', [ReviewController::class, 'update']);
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('auth');
 
-
+//delete review
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('auth');
 
 //show single review
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
