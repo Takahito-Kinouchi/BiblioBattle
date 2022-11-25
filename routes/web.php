@@ -57,9 +57,11 @@ Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware
 //show single review
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
-//vote review
-Route::post('/votes', [VoteController::class, 'vote']);
+//upvote review
+Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('auth');
 
+//downvote review
+Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('auth');
 
 
 
