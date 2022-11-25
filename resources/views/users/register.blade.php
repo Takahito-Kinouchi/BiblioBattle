@@ -1,7 +1,7 @@
 <form action="/users" method="POST">
     @csrf
     <div>
-        <label>アカウント名：</label>
+        <label>account name: </label>
         <input type="text" name="name" value="{{ old('name') }}"/>
     </div>
 
@@ -10,7 +10,7 @@
     @enderror
 
     <div>
-        <label>メールアドレス：</label>
+        <label>mail address: </label>
         <input type="text" name="email" value="{{ old('email') }}"/>
     </div>
 
@@ -19,7 +19,7 @@
     @enderror
 
     <div>
-        <label>パスワード：</label>
+        <label>password: </label>
         <input type="text" name="password" value="{{ old('password') }}"/>
     </div>
 
@@ -28,7 +28,7 @@
     @enderror
 
     <div>
-        <label>パスワード確認：</label>
+        <label>password confirmation: </label>
         <input type="text" name="password_confirmation" value="{{ old('password_confirmation') }}"/>
     </div>
 
@@ -37,6 +37,6 @@
     @enderror
 
     <button type="submit" >
-        ユーザー登録
+        Register
     </button>
 </form>
