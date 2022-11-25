@@ -23,7 +23,7 @@ class UserController extends Controller
         //ログインする
         auth()->login($user);
 
-        return redirect('/')->with('message', '新規ユーザーを作成してログインしました！');
+        return back()->with('message', '新規ユーザーを作成してログインしました！');
     }
 
     public function login(){
@@ -48,6 +48,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerate();
 
-        return redirect('/')->with('message', 'ログアウトしました！');
+        return back()->with('message', 'ログアウトしました！');
     }
 }
