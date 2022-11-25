@@ -1,7 +1,7 @@
 <form action="/users/authenticate" method="POST">
     @csrf
     <div>
-        <label>メールアドレス：</label>
+        <label>mail address: </label>
         <input type="text" name="email" value="{{ old('email') }}"/>
     </div>
 
@@ -10,7 +10,7 @@
     @enderror
 
     <div>
-        <label>パスワード：</label>
+        <label>password: </label>
         <input type="text" name="password" value="{{ old('password') }}"/>
     </div>
 
@@ -19,11 +19,11 @@
     @enderror
 
     <button type="submit" >
-        ログイン
+        Login
     </button>
 
     <p>
-        アカウントがありませんか？
-        <a href="/users/register">ユーザー登録</a>
+        No account?
+        <a href="/users/register">Register</a>
     </p>
 </form>
