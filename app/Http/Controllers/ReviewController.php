@@ -9,7 +9,7 @@ class ReviewController extends Controller
 {
     public function index(){
         $reviews = Review::get()->sortByDesc(function($query){
-            return $query->votes->count();
+            return $query->votes->sum('vote');
         })->take(6);
 
         return view('reviews.index', [
