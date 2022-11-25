@@ -7,6 +7,8 @@
     <p>content: {{ $review->content }}</p>
     <p>date: {{ $review->created_at->format('Y-m-d') }}</p>
     <p>current vote: {{ $review->votes->sum('vote') }}</p>
+
+    @if (auth()->id() != $review->user->id)
     <p>Vote for this review!
         @auth
         <form action="/votes/upvote" method="POST">
@@ -15,7 +17,7 @@
                 upvote
             </button>
         </form>
-                <form action="/votes/downvote" method="POST">
+        <form action="/votes/downvote" method="POST">
             @csrf
             <button type="submit" name="review_id" value="{{ $review->id }}">
                 downvote
@@ -25,4 +27,5 @@
         <p>You must login to vote: <a href="/users/login">Login</a> or <a href="/users/register">Register</a></p>
         @endauth
     </p>
+    @endif
 </li>
