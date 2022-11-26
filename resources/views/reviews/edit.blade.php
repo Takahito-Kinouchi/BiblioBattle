@@ -47,7 +47,7 @@
     @enderror
 
     <button type="submit">
-        更新
+        Update
     </button>
 
 </form>

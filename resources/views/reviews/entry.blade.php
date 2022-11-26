@@ -46,7 +46,7 @@
     @enderror
 
     <button type="submit">
-        エントリー
+        Entry
     </button>
 
 </form>
