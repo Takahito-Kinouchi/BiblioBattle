@@ -8,13 +8,11 @@ class UserAuthRequest extends FormRequest
 {
     public function authorize()
     {
-        // if ($this->path() == '/users/authenticate') {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-        //認証のオーソライズはどうやる？
-        return true;
+        if ($this->path() == 'users/authenticate') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function rules()
