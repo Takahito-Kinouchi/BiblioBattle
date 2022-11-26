@@ -11,8 +11,8 @@
         <p>current vote: {{ $review->votes->sum('vote') }}</p>
 
         @if (auth()->id() != $review->user->id)
-            <x-votes.vote :review="$review" />
-            <x-comments.comment :comment="$review->$comments" />
+            @include('votes.vote', ['review' => $review])
+            @include('comments.comments', ['comments' => $review->comments])
         @endif
     </li>
 </ul>
