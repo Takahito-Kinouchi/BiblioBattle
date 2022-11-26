@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Vote;
 use App\Models\Review;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Review::factory(30)->create();
         Vote::factory(100)->create();
+        Comment::factory(300)->create();
     }
 }
