@@ -19,7 +19,6 @@ class ReviewController extends Controller
 
     public function show($id){
         $review = Review::where('id', '=', $id)->first();
-
         return view('reviews.single', [
             'review' => $review,
         ]);
