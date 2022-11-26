@@ -16,7 +16,7 @@ class Vote extends Model
         'vote',
     ];
 
-    public function book_review(){
+    public function review(){
         return $this->belongsTo(Review::class);
     }
 }
