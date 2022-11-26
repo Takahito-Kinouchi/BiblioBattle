@@ -15,6 +15,7 @@
     @foreach ($comments->sortByDesc('updated_at')->values() as $comment)
     <li>
         <p>user name: {{ $comment->user->name }}</p>
+        <p>date: {{ $comment->updated_at }}</p>
         comment:
             <p>{{ $comment->comment }}</p>
     </li>
