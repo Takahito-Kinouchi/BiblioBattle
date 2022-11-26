@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,8 @@ Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('auth'
 //downvote review
 Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('auth')->middleware('verified');
 
+//comment on review
+Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->middleware('verified');
 
-
+//edit your comment
 
