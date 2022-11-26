@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,35 +34,44 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 //logout
 Route::post('/users/logout', [UserController::class, 'logout']);
 
+//send email verification notification
+Route::get('/email/verify', [EmailController::class, 'send'])->middleware(['auth', 'signed'])->name('verification.notice');
+
+//receive email verification notification
+Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'receive'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+//resend email verification notification
+Route::post('/email/verification-notification', [EmailController::class, 'resend'])->middleware(['auth', 'throttle:6, 1'])->name('verification.send');
+
 //show all reviews
 Route::get('/', [ReviewController::class, 'index']);
 
 //show review entry form
-Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('auth');
+Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('auth')->middleware('verified');
 
 //store review entry
-Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth');
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->middleware('verified');
 
 //show review manage form
 Route::get('/reviews/manage', [ReviewController::class, 'manage'])->middleware('auth');
 
 //show edit form
-Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('auth');
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('auth')->middleware('verified');
 
 //update review
-Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('auth');
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('auth')->middleware('verified');
 
 //delete review
-Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('auth');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('auth')->middleware('verified');
 
 //show single review
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
 //upvote review
-Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('auth');
+Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('auth')->middleware('verified');
 
 //downvote review
-Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('auth');
+Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('auth')->middleware('verified');
 
 
 

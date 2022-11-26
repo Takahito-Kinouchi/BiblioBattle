@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserAuthRequest;
+use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\UserStoreRequest;
 
 class UserController extends Controller
@@ -20,6 +21,10 @@ class UserController extends Controller
 
         //新規ユーザー作成
         $user = User::create($formFields);
+
+        //新規ユーザー作成時イベントの実行
+        event(new Registered($user));
+        
         //ログインする
         auth()->login($user);
 
