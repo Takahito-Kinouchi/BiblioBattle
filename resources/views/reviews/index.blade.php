@@ -1,6 +1,6 @@
 @include('components.header')
 
-<p>Most Voted Reviews</p>
+<p>All Reviews</p>
 <ul>
     @if (count($reviews) == 0)
         <li>
