@@ -48,34 +48,34 @@ Route::post('/email/verification-notification', [EmailController::class, 'resend
 Route::get('/', [ReviewController::class, 'index']);
 
 //show review entry form
-Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('auth')->middleware('verified');
+Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('UserEmailIsVerified');
 
 //store review entry
-Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->middleware('verified');
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('UserEmailIsVerified');
 
 //show review manage form
 Route::get('/reviews/manage', [ReviewController::class, 'manage'])->middleware('auth');
 
 //show edit form
-Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('auth')->middleware('verified');
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('UserEmailIsVerified');
 
 //update review
-Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('auth')->middleware('verified');
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('UserEmailIsVerified');
 
 //delete review
-Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('auth')->middleware('verified');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('UserEmailIsVerified');
 
 //show single review
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
 //upvote review
-Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('auth')->middleware('verified');
+Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('UserEmailIsVerified');
 
 //downvote review
-Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('auth')->middleware('verified');
+Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('UserEmailIsVerified');
 
 //comment on review
-Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->middleware('verified');
+Route::post('/comments', [CommentController::class, 'store'])->middleware('UserEmailIsVerified');
 
 //edit your comment
 
