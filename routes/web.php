@@ -48,34 +48,34 @@ Route::post('/email/verification-notification', [EmailController::class, 'resend
 Route::get('/', [ReviewController::class, 'index']);
 
 //show review entry form
-Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('UserEmailIsVerified');
+Route::get('/reviews/entry', [ReviewController::class, 'entry'])->middleware('verified');
 
 //store review entry
-Route::post('/reviews', [ReviewController::class, 'store'])->middleware('UserEmailIsVerified');
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('verified');
 
 //show review manage form
 Route::get('/reviews/manage', [ReviewController::class, 'manage'])->middleware('auth');
 
 //show edit form
-Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('UserEmailIsVerified');
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('verified');
 
 //update review
-Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('UserEmailIsVerified');
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('verified');
 
 //delete review
-Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('UserEmailIsVerified');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('verified');
 
 //show single review
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
 //upvote review
-Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('UserEmailIsVerified');
+Route::post('/votes/upvote', [VoteController::class, 'vote'])->middleware('verified');
 
 //downvote review
-Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('UserEmailIsVerified');
+Route::post('/votes/downvote', [VoteController::class, 'vote'])->middleware('verified');
 
 //comment on review
-Route::post('/comments', [CommentController::class, 'store'])->middleware('UserEmailIsVerified');
+Route::post('/comments', [CommentController::class, 'store'])->middleware('verified');
 
 //edit your comment
 

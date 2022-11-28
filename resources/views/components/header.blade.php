@@ -14,7 +14,7 @@
         <li>
             <a href="/reviews/entry" class="hover:text-laravel"
                 ><i class="fa-solid fa-gear"></i>
-                Entry Your Review</a>
+                Post Your Review</a>
         </li>
         <li>
             <form action="/users/logout" method="POST" class="inline">
@@ -24,6 +24,7 @@
             </button>
         </form>
         </li>
+        @includeWhen(auth()->user()->email_veridied_at, 'users.resend_email_notification')
         @else
         <li>
             <a href="/users/register" class="hover:text-laravel"
