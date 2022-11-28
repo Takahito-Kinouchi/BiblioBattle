@@ -1,5 +1,5 @@
 # ビブリオバトルとは？
-ビブリオバトル（Bibliobattle）は、京都大学から広まった輪読会・読書会。(出典：wikipedia　https://ja.wikipedia.org/wiki/ビブリオバトル)
+ビブリオバトル（Bibliobattle）は、京都大学から広まった輪読会・読書会。(出典：wikipedia　https://ja.wikipedia.org/wiki/ビブリオバトル)<br>
 このサイトは、ビブリオバトルのルールを土台にした書籍のレビューサイトである。<br>
 下記の動作を行う。
 - 書籍のレビュー（以下、書評）の投稿
